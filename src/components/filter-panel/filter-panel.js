@@ -1,7 +1,8 @@
 import React from "react";
+import "./filter-panel.css";
 
 const FilterPanel = () => {
-  let  buttons = [
+  let buttons = [
     { name: "all", label: "All" },
     { name: "admin", label: "Admin" },
     { name: "partner", label: "Partner" },
@@ -19,6 +20,16 @@ const FilterPanel = () => {
     );
   });
 
-  return <div className="btn-group">{buttons}</div>;
+  return (
+    <nav className='panel'>
+      <div className="btn-group">{buttons}</div>
+      <input
+        type="text"
+        className="form-control"
+        palceholder="Статус, телефон или почта"
+      ></input>
+    </nav>
+  );
 };
 export default FilterPanel;
+

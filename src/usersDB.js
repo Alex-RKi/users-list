@@ -1,7 +1,6 @@
 export default class UsersDB {
-  
   getData = async () => {
-    return  new Promise((resolve,_) => {
+    return new Promise((resolve, _) => {
       setTimeout(() => {
         resolve(this._dummyData);
       }, 1000);
@@ -13,7 +12,7 @@ export default class UsersDB {
       id: 1,
       added: "2020-04-05",
       altered: "2020-11-20",
-      fullName: ["Иванов", "Иван", "Иванович"],
+      fullname: "Иванов Иван Иванович",
       password: "qwerty777!",
       status: "admin",
       email: "admin@corbox.ru",
@@ -23,7 +22,7 @@ export default class UsersDB {
       id: 2,
       added: "2019-01-08",
       altered: "2020-06-03",
-      fullName: ["Иванова", "Ирина", "Петровна"],
+      fullname: "Иванова Ирина Петровна",
       password: "20190108Cr",
       status: "partner",
       email: "somePartner@mail.ru",
@@ -33,20 +32,20 @@ export default class UsersDB {
       id: 3,
       added: "2017-09-25",
       altered: "2020-011-20",
-      fullName: ["Семёнов", "Семён", "Семёнович"],
-      password: "semen-rulit2020",
+      fullname: "Семёнов Семён Семёнович",
+      password: "semen!1995!",
       status: "client",
-      email: "admin@corbox.ru",
+      email: "iamsemyon@yandex.ru",
       phone: "8-950-321-21-21",
     },
     {
       id: 4,
       added: "2018-01-06",
       altered: "2020-03-15",
-      fullName: ["Петровна", "Анна", "Ивановна"],
+      fullname: "Петровна Анна Ивановна",
       password: "hardPAsss!11",
       status: "client",
-      email: "admin@corbox.ru",
+      email: "box@mail.ru.ru",
       phone: "8-800-333-22-11",
     },
   ];

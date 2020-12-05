@@ -1,0 +1,13 @@
+.panel {
+  display: flex;
+  flex-wrap: nowrap;
+}
+@media (max-width: 500px) {
+  .panel {
+    flex-wrap: wrap;
+  }
+  .btn-group {
+    flex-grow: 1;
+    margin-bottom: 5px;
+  }
+}
