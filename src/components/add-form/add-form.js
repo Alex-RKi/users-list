@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addUserAction, updateUserAction } from "../../actions";
+import { useHistory } from "react-router-dom";
+import createTemplate from "../../utils";
+import "./add-form.css";
 
 const AddForm = ({ user }) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { userList } = useSelector((state) => state);
+  const [message, setMessage] = useState("");
+  const btnText = user ? "UPDATE USER" : "ADD";
+
   const formSelect = (user = {}) => {
     const options = [
       { value: "", label: "Select user role" },
@@ -30,9 +40,31 @@ const AddForm = ({ user }) => {
       </select>
     );
   };
+  const saveUserData = (e) => {
+    e.preventDefault();
+    const newUser = createTemplate(e.target);
+    if (user) {
+      newUser.id = user.id;
+      newUser.added = user.added;
+      dispatch(updateUserAction(newUser, userList));
+      setMessage(
+        <div className="alert alert-success text-center mt-2">User updated</div>
+      );
+      history.push("/add-new");
+      //setTimeout(() => history.goBack(), 1000);
+    } else {
+      dispatch(addUserAction(newUser, userList));
+      setMessage(
+        <div className="alert alert-primary text-center mt-2 w-100">
+          User added to list
+        </div>
+      );
+      setTimeout(() => history.push("/"), 1000);
+    }
+  };
 
   return (
-    <form className="form-group mt-2">
+    <form className="form-group mt-2" onSubmit={saveUserData}>
       <label htmlFor="role-select">Role</label>
       {formSelect(user)}
 
@@ -54,11 +86,10 @@ const AddForm = ({ user }) => {
         <label htmlFor="password">Password, at least 8 symbols </label>
         <input
           defaultValue={user ? user.password : ""}
-          placeholder="Letters in upper & lowercase and '!','?' symbols"
+          placeholder="Letters in upper & lowercase and ! ? symbols"
           className="form-control"
           id="password"
-          minLength="8"
-          pattern="[0-9!?a-zA-Z]+"
+          pattern="[0-9!?a-zA-Z]{8,}"
           type="text"
           required
         ></input>
@@ -75,7 +106,7 @@ const AddForm = ({ user }) => {
         ></input>
 
         <label htmlFor="phone">
-          Full phone number, (whitespaces, '-' & '()' can be omitted")
+          Full phone number, whitespaces, '-' & '()' can be omitted
         </label>
         <input
           placeholder=". (...) ... .. .."
@@ -87,7 +118,8 @@ const AddForm = ({ user }) => {
           required
         ></input>
       </fieldset>
-      <input className="btn btn-primary  w-100" type="submit" value="Create" />
+      <input className="btn btn-primary  w-100" type="submit" value={btnText} />
+      {message}
     </form>
   );
 };

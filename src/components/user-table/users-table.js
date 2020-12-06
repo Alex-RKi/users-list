@@ -1,25 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import UsersDB from "../../usersDB";
-import FilterPanel from "../filter-panel/filter-panel";
+import React from "react";
+import { useSelector } from "react-redux";
 import "./user-table.css";
+import FilterPanel from "../filter-panel/filter-panel";
 import UserRow from "../user-row";
 
 const UsersTable = () => {
-  const userDb = new UsersDB();
-
-  //const { loading } = useSelector(state = > state.loading)
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    userDb
-      .getData()
-      .then((res) => {
-        setData(res);
-      })
-      .catch((err) => console.log(err));
-    return <div className="d-flex flex-column">{loadList(data)}</div>;
-  }, []);
+  const {userList} = useSelector((state) => state);
+  console.log(userList);
 
   const loadList = (list) => {
     return list.map((user) => {
@@ -27,11 +14,11 @@ const UsersTable = () => {
       return <UserRow key={id} {...user} />;
     });
   };
-
+const empty = <tr><td className='text-center' colSpan="75%">NO DATA ...</td></tr>;
   return (
     <>
-    <FilterPanel />
-      <table className='mt-2'>
+      <FilterPanel />
+      <table className="mt-2">
         <thead>
           <tr>
             <th scope="col">Action</th>
@@ -44,7 +31,7 @@ const UsersTable = () => {
             <th scope="col">Phone</th>
           </tr>
         </thead>
-        <tbody>{loadList(data)}</tbody>
+        <tbody>{userList.length ? loadList(userList): empty}</tbody>
       </table>
     </>
   );
