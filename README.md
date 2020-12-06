@@ -1,5 +1,6 @@
-Users table app, supports add user, change user data  and delete user options.
+Users table app, supports: add user, change user data  and delete user options.
 Filter by role, name, email or phone fields.
+To edit user data click user name. 
 ## Available Scripts
 In the project directory, you can run:
 ### `npm start`
