@@ -1,5 +1,10 @@
-let _idCounter = 1000;
-
+export const updateIdAction = (id) => {
+  const newId = id + 1;
+  return {
+    type: "UPDATE_ID",
+    payload: newId,
+  };
+};
 
 export const deleteUserAction = (id, userList) => {
   const updatedList = deleteElem(id, userList);
@@ -8,8 +13,8 @@ export const deleteUserAction = (id, userList) => {
     payload: updatedList,
   };
 };
-export const addUserAction = (user, userList) => {
-  const updatedList = addElem(user, userList);
+export const addUserAction = (user, userList, id) => {
+  const updatedList = addElem(user, userList, id);
   return {
     type: "ADD_USER",
     payload: updatedList,
@@ -24,11 +29,10 @@ export const updateUserAction = (user, userList) => {
   };
 };
 
-const addElem = (elem, arr) => {
+const addElem = (elem, arr, id) => {
   const newElem = elem;
-  newElem.id = _idCounter;
-  _idCounter++;
-  return [ ...arr, newElem ];
+  newElem.id = id;
+  return [...arr, newElem];
 };
 const deleteElem = (id, arr) => {
   const idx = arr.findIndex((elem) => elem.id === id);

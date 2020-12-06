@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addUserAction, updateUserAction } from "../../actions";
+import { addUserAction, updateUserAction, updateIdAction } from "../../actions";
 import { useHistory } from "react-router-dom";
 import createTemplate from "../../utils";
 import "./add-form.css";
@@ -8,7 +8,7 @@ import "./add-form.css";
 const AddForm = ({ user }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { userList } = useSelector((state) => state);
+  const { userList, id } = useSelector((state) => state);
   const [message, setMessage] = useState("");
   const btnText = user ? "UPDATE USER" : "ADD";
 
@@ -51,9 +51,9 @@ const AddForm = ({ user }) => {
         <div className="alert alert-success text-center mt-2">User updated</div>
       );
       history.push("/add-new");
-      //setTimeout(() => history.goBack(), 1000);
     } else {
-      dispatch(addUserAction(newUser, userList));
+      dispatch(addUserAction(newUser, userList, id));
+      dispatch(updateIdAction(id));
       setMessage(
         <div className="alert alert-primary text-center mt-2 w-100">
           User added to list

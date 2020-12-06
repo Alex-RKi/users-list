@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: nowrap;
 }
-@media (max-width: 500px) {
+@media (max-width: 540px) {
   .panel {
     flex-wrap: wrap;
   }
