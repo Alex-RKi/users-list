@@ -2,19 +2,23 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import AddForm from "../add-form";
 import UserTable from "../user-table";
-import './app.css';
+import "./app.css";
 
 function App() {
   return (
-    <div className="app h-auto">
+    <div className="appBody">
       <Router>
-        <nav className="mb-5">
-          <Link className="btn btn-primary" to="/">
-            LIST
-          </Link>
-          <Link className="btn btn-secondary" to="/add-new">
-            Add new user
-          </Link>
+        <nav className="head">
+          <button className="btn btn-primary">
+            <Link className="navLink" to="/">
+              LIST
+            </Link>
+          </button>
+          <button className="btn btn-secondary">
+            <Link className="navLink" to="/add-new">
+              Add new user
+            </Link>
+          </button>
         </nav>
 
         <Switch>
@@ -22,11 +26,10 @@ function App() {
           <Route path="/add-new" component={AddForm} />
           <Route
             path="/user/:id"
-            render={({match, location}) => {
-              
+            render={({ match, location }) => {
               const { id } = match.params;
               const { user } = location;
-              return <AddForm id={id} user={user}/>;
+              return <AddForm id={id} user={user} />;
             }}
           />
         </Switch>
@@ -36,5 +39,3 @@ function App() {
 }
 
 export default App;
-
-

@@ -6,7 +6,6 @@ import UserRow from "../user-row";
 
 const UsersTable = () => {
   const { userList } = useSelector((state) => state);
-  useSelector((state) => console.log(state));
 
   const [filterName, saveFilter] = useState("all");
   const [searchText, saveSearchText] = useState("");
@@ -55,13 +54,13 @@ const UsersTable = () => {
     </tr>
   );
   return (
-    <>
+    <div >
       <FilterPanel
         onFilter={onFilter}
         onSearch={onSearch}
         filterName={filterName}
       />
-      <table className="mt-2">
+      <table className="mt-1">
         <thead>
           <tr>
             <th scope="col">Action</th>
@@ -76,7 +75,7 @@ const UsersTable = () => {
         </thead>
         <tbody>{userList.length ? loadList(filteredList) : empty}</tbody>
       </table>
-    </>
+    </div>
   );
 };
 

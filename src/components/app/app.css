@@ -1,4 +1,35 @@
-.app {
+.appBody {
   background-color: rgb(231, 231, 231);
-  padding: 2em;
+  padding: 3em;
+}
+.head {
+  display: flex;
+  flex-grow: 0;
+  flex-wrap: nowrap;
+  margin-bottom: 20px;
+}
+.navLink {
+  color: white;
+}
+button {
+  border: 1px solid white;
+}
+@media (max-width: 450px) {
+  .appBody {
+    padding: 0em;
+  }
+
+  .head {
+    text-align: center;
+    flex-grow: 1;
+    margin-bottom: 0;
+    border-bottom: 2px solid white;
+    min-width: 100%;
+  }
+
+  .head button {
+    min-width: 50%;
+    color: white important!;
+  }
+
 }
