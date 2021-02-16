@@ -9,16 +9,13 @@ function App() {
     <div className="appBody">
       <Router>
         <nav className="head">
-          <button className="btn btn-primary">
-            <Link className="navLink" to="/">
-              LIST
-            </Link>
-          </button>
-          <button className="btn btn-secondary">
-            <Link className="navLink" to="/add-new">
-              Add new user
-            </Link>
-          </button>
+          <Link className="navLink" to="/">
+            <button className="btn btn-primary">LIST</button>
+          </Link>
+
+          <Link className="navLink" to="/add-new">
+            <button className="btn btn-secondary">Add new user</button>
+          </Link>
         </nav>
 
         <Switch>
